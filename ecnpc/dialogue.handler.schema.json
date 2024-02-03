@@ -2,21 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "oneOf": [
     {
-      "type": "object",
-      "description": "继续对话",
-      "properties": {
-        "type": {
-          "const": "dialogue",
-          "description": "继续对话"
-        },
-        "dialogue": {
-          "$ref": "dialogue.schema.json"
-        }
-      },
-      "required": [
-        "type",
-        "dialogue"
-      ]
+      "$ref": "dialogue.schema.json"
     },
     {
       "type": "object",
