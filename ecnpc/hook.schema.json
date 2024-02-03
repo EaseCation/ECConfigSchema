@@ -1,0 +1,359 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {
+        "type": "string",
+        "enum": [
+          "lookat",
+          "animation.hey",
+          "baby",
+          "scoretag-online"
+        ]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "lookat",
+            "description": "NPC主动看向玩家的行为。\n可以配置一个可选的距离参数，以限制触发距离。"
+          },
+          "distance": {
+            "type": "number",
+            "default": 10
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "touch",
+            "description": "当玩家接触NPC时触发的行为。\n它可以配置一系列的回调操作（PlayerAction）"
+          },
+          "callback": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": {
+              "anyOf": [
+                "touch.exchange",
+                "exchange"
+              ]
+            },
+            "description": "玩家点击NPC时，触发exchange"
+          },
+          "exchange": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "animation",
+            "description": "控制NPC随机播放实体动画"
+          },
+          "animation": {
+            "oneOf": [
+              {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "description": "animation字段可以是一个string",
+                    "enum": [
+                      "animation.easecation.hey",
+                      "animation.easecation.cheer",
+                      "animation.easecation.cheer1",
+                      "animation.easecation.cheer2",
+                      "animation.easecation.sitting",
+                      "animation.easecation.look_around"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "description": "animation字段可以是一个string"
+                  }
+                ]
+              },
+              {
+                "type": "array",
+                "description": "animation字段还可以时一个List，表示从这几个动画中随机播放",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "description": "animation字段可以是一个string",
+                      "enum": [
+                        "animation.easecation.hey",
+                        "animation.easecation.cheer",
+                        "animation.easecation.cheer1",
+                        "animation.easecation.cheer2",
+                        "animation.easecation.sitting",
+                        "animation.easecation.look_around"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "description": "animation字段可以是一个string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "duration": {
+            "type": "number",
+            "description": "动画的间隔时间（毫秒）"
+          }
+        },
+        "required": ["type", "animation"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "sound",
+            "description": "控制NPC随机播放声音。\n可以包括声音名称和间隔时间。"
+          },
+          "sound": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "duration": {
+            "type": "number",
+            "description": "声音的间隔时间（毫秒）"
+          }
+        },
+        "required": ["type", "sound"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "touch.sound",
+            "description": "玩家点击NPC时播放声音，一般用于NPC“啊哈”的叫声。"
+          },
+          "sound": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["type", "sound"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "touch.particle",
+            "description": "玩家点击NPC时产生粒子效果的配置。"
+          },
+          "particle": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        },
+        "required": ["type", "particle"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "touch.particle.mobspawn",
+            "description": "一个预置的点击NPC时生成mobspawn粒子的hook"
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "$ref": "dialogue.schema.json"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "game",
+            "description": "用于游戏相关的NPC行为配置。"
+          },
+          "name": {
+            "type": "string"
+          },
+          "disableNameTag": {
+            "type": "boolean"
+          },
+          "gameCenterType": {
+            "type": "string"
+          },
+          "stageTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lobbyTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "joinLobby": {
+            "type": "string"
+          },
+          "joinStage": {
+            "type": "string"
+          },
+          "openGameCenter": {
+            "type": "string"
+          },
+          "teleport": {
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "game-list-text",
+            "description": "显示详细游戏列表的浮空字（hook做的只是设置NameTag）。\n用于包含一堆子游戏的NPC，玩家接近时会显示对应GameCenter二级分类中的所有子游戏的名称。"
+          },
+          "gameCenterType": {
+            "type": "string"
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "game-billboard",
+            "description": "NPC头顶在线人数相关的人数刷新hook。\n需要搭配billboard使用。"
+          },
+          "gameCenterType": {
+            "type": "string"
+          },
+          "stageTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lobbyTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "move",
+            "description": "控制NPC移动行为的配置。\n为了节省性能，这个hook并没有使用寻路机制，也没有计算碰撞箱，而是简单地在给定的坐标之间进行差值移动。\n注意，因为不计算碰撞箱，所以当需要上坡时，需要进行锯齿状选点，不然会沿着斜线往上飞"
+          },
+          "speed": {
+            "type": "number",
+            "default": 0.1
+          },
+          "loop": {
+            "type": "boolean",
+            "default": false
+          },
+          "maxRotationSpeed": {
+            "type": "number"
+          },
+          "insertReverse": {
+            "type": "boolean",
+            "default": false
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "to": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["to"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["from", "to"]
+                }
+              ]
+            }
+          }
+        },
+        "required": ["type", "points"],
+        "additionalProperties": false
+      }
+    ]
+  }
+}
