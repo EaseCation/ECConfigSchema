@@ -4,7 +4,7 @@
     "properties": {
       "type": {
         "const": "dialogue",
-        "description": "钩子类型，此处应为'dialogue'"
+        "description": "钩子类型，此处应为 'dialogue'"
       },
       "key": {
         "type": "string",
@@ -37,71 +37,7 @@
               "description": "点击按钮后是否关闭对话弹窗"
             },
             "handler": {
-              "oneOf": [
-                {
-                  "$ref": "#"
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "const": "action",
-                      "description": "处理器类型"
-                    },
-                    "callback": {
-                      "type": "array",
-                      "description": "回调配置",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string"
-                          }
-                        },
-                        "required": ["type"],
-                        "additionalProperties": true
-                      }
-                    }
-                  },
-                  "required": ["type", "callback"],
-                  "description": "触发PlayerAction的处理器配置项"
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "const": "random",
-                      "description": "随机进行处理"
-                    },
-                    "handler": {
-                      "type": "array",
-                      "description": "随机处理器配置",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "weight": {
-                            "type": "number",
-                            "description": "随机权重"
-                          },
-                          "handler": {
-                            "$ref": "#/properties/button/items/properties/handler"
-                          }
-                        },
-                        "required": ["weight", "handler"]
-                      }
-                    }
-                  },
-                  "required": ["type", "handler"],
-                  "description": "随机进行处理"
-                },
-                {
-                  "type": "array",
-                  "description": "多个的",
-                  "items": {
-                    "$ref": "#/properties/button/items/properties/handler"
-                  }
-                }
-              ]
+              "$ref": "dialogue.handler.schema.json"
             }
           },
           "required": ["buttonName"],

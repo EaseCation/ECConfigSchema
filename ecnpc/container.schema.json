@@ -45,5 +45,6 @@
         "$ref": "prefab.schema.json"
       }
     }
-  }
+  },
+  "additionalProperties": true
 }

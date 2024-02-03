@@ -1,0 +1,477 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "oneOf": [
+    {
+      "type": "object"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "custom",
+          "description": "自定义行为，在Java逻辑中注册和实现"
+        },
+        "id": {
+          "type": "string"
+        },
+        "args": {
+          "type": "object"
+        }
+      },
+      "required": [
+          "type",
+          "id"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "message"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "text"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "title",
+          "description": "显示 Title"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sub": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "title"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form",
+          "description": "弹出原版FormUI"
+        },
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "buttons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "image": {
+                "type": "string"
+              },
+              "actions": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "required": [
+              "text",
+              "actions"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "text"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.lottery",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.addition-ticket",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.preview",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.preview.ornament",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.cdkey",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.player-service",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.mail",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form.sign-in",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "merchandise.set",
+          "description": "设置商品"
+        },
+        "merchandise": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "errorMessage": {
+            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+          }
+        }
+      },
+      "required": ["type", "merchandise"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "merchandise.add",
+          "description": "添加商品"
+        },
+        "merchandise": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "errorMessage": {
+            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+          }
+        }
+      },
+      "required": ["type", "merchandise"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "merchandise.use",
+          "description": "使用商品"
+        },
+        "merchandise": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "errorMessage": {
+            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+          }
+        }
+      },
+      "required": ["type", "merchandise"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "gift",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "record",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "exchange",
+          "description": "执行exchange"
+        },
+        "id": {
+          "type": "string",
+          "description": "兑换的ID"
+        },
+        "args": {
+          "type": "object",
+          "description": "额外参数"
+        },
+        "gainModUI": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "兑换界面的标题"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": ["type"]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": {
+            "oneOf": [
+              "firework",
+              "fireworks"
+            ]
+          },
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sound",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "kick",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "mission",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tree.add",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tree.milestone",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tree.main",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": {
+            "oneOf": [
+              "teleport",
+              "tp"
+            ]
+          },
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "workshop",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "workshop.group",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "netease.shop",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "activity",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "modui.gain",
+          "description": ""
+        }
+      },
+      "required": [
+        "type"
+      ]
+    }
+  ]
+}
