@@ -1,5 +1,15 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "对话的handler配置",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "handler类型",
+      "enum": ["dialogue", "action", "random"]
+    }
+  },
+  "required": ["type"],
   "oneOf": [
     {
       "$ref": "dialogue.schema.json"
@@ -15,6 +25,7 @@
         "callback": {
           "oneOf": [
             {
+              "type": "object",
               "$ref": "../playeraction/playeraction.schema.json"
             },
             {
@@ -58,12 +69,6 @@
       },
       "required": ["type", "handler"],
       "description": "随机进行处理"
-    },
-    {
-      "type": "array",
-      "items": {
-        "$ref": "#"
-      }
     }
   ]
 }

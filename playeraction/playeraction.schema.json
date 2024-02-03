@@ -3,9 +3,6 @@
   "type": "object",
   "oneOf": [
     {
-      "type": "object"
-    },
-    {
       "type": "object",
       "properties": {
         "type": {
@@ -20,8 +17,8 @@
         }
       },
       "required": [
-          "type",
-          "id"
+        "type",
+        "id"
       ]
     },
     {
@@ -207,7 +204,7 @@
         },
         "merchandise": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
           "errorMessage": {
             "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
           }
@@ -224,7 +221,7 @@
         },
         "merchandise": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
           "errorMessage": {
             "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
           }
@@ -241,7 +238,7 @@
         },
         "merchandise": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9]+\\.[a-zA-Z0-9.]+:\\d+$",
+          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
           "errorMessage": {
             "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
           }
@@ -311,12 +308,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "const": {
-            "oneOf": [
-              "firework",
-              "fireworks"
-            ]
-          },
+          "enum": ["firework", "fireworks"],
           "description": ""
         }
       },
@@ -400,12 +392,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "const": {
-            "oneOf": [
-              "teleport",
-              "tp"
-            ]
-          },
+          "enum": ["teleport", "tp"],
           "description": ""
         }
       },

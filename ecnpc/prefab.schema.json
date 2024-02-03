@@ -31,7 +31,7 @@
     },
     "skin": {
       "description": "指定NPC的皮肤（只有在type为human时生效）",
-      "oneOf": [
+      "anyOf": [
         {
           "type": "string",
           "enum": [

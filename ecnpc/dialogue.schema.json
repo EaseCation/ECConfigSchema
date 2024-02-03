@@ -37,7 +37,19 @@
             "description": "点击按钮后是否关闭对话弹窗"
           },
           "handler": {
-            "$ref": "dialogue.handler.schema.json"
+            "oneOf": [
+              {
+                "type": "object",
+                "$ref": "dialogue.handler.schema.json"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "dialogue.handler.schema.json"
+                }
+              }
+            ]
           }
         },
         "required": [
