@@ -64,12 +64,11 @@
         }
     },
     "if": {
-        "required": ["npc"]
+        "required": [
+            "reference"
+        ]
     },
     "then": {
-        "$ref": "#/definitions/container"
-    },
-    "else": {
         "type": "object",
         "properties": {
             "reference": {
@@ -80,4 +79,8 @@
         "required": [
             "reference"
         ]
+    },
+    "else": {
+        "$ref": "#/definitions/container"
     }
+}
