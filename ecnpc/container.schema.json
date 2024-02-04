@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/container.schema.json",
     "title": "ECNPCContainer schema",
+    "description": "ECNPC对象容器，用于定义一组ECNPC相关的Dialogue、Hook、Skin以及一组相关的NPC预制实体，对象容器内的NPC预制实体可以根据npcTag进行过滤，统一被生成、管理",
     "type": "object",
     "properties": {
         "reference": {

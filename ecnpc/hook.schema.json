@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/hook.schema.json",
     "title": "ECNPC hook schema",
+    "description": "ECNPC行为钩子，用于定义NPC的特定行为和与玩家的交互",
     "type": "array",
     "items": {
         "oneOf": [

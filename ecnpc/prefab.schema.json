@@ -2,9 +2,11 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/prefab.schema.json",
     "title": "ECNPC prefab schema",
+    "description": "ECNPC预制实体，游戏内NPC实体可以由预制实体作为模板来生成，一个预制实体可生成多个游戏内NPC实体",
     "type": "object",
     "properties": {
         "npcTag": {
+            "description": "指定NPC的皮肤（只有在type为human时生效）",
             "type": "string"
         },
         "pos": {

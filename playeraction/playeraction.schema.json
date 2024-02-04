@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://easecation.github.io/ECConfigSchema/playeraction/playeraction.schema.json",
     "title": "Player action schema",
+    "description": "玩家行为接口，用于对某一玩家执行游戏内、业务逻辑等相关的行为和操作",
     "type": "object",
     "oneOf": [
         {

@@ -2,8 +2,8 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/dialogue.handler.schema.json",
     "title": "ECNPC dialogue handler schema",
+    "description": "ECNPC交互对话处理器，用于玩家在NPC交互点击按钮后继续进行对话或者执行其他操作",
     "type": "object",
-    "description": "对话的handler配置",
     "properties": {
         "type": {
             "type": "string",
