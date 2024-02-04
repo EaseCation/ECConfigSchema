@@ -63,21 +63,21 @@
             ]
         }
     },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/container"
+    "if": {
+        "required": ["npc"]
+    },
+    "then": {
+        "$ref": "#/definitions/container"
+    },
+    "else": {
+        "type": "object",
+        "properties": {
+            "reference": {
+                "description": "用于引用已经注册过的NPC对象容器",
+                "type": "string"
+            }
         },
-        {
-            "type": "object",
-            "properties": {
-                "reference": {
-                    "description": "用于引用已经注册过的NPC对象容器",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "reference"
-            ]
-        }
-    ]
-}
+        "required": [
+            "reference"
+        ]
+    }
