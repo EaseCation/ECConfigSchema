@@ -1,75 +1,88 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/dialogue.handler.schema.json",
-  "type": "object",
-  "description": "对话的handler配置",
-  "properties": {
-    "type": {
-      "type": "string",
-      "description": "handler类型",
-      "enum": ["dialogue", "action", "random"]
-    }
-  },
-  "required": ["type"],
-  "oneOf": [
-    {
-      "$ref": "dialogue.schema.json"
-    },
-    {
-      "type": "object",
-      "description": "PlayerAction回调",
-      "properties": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/dialogue.handler.schema.json",
+    "title": "ECNPC dialogue handler schema",
+    "type": "object",
+    "description": "对话的handler配置",
+    "properties": {
         "type": {
-          "const": "action",
-          "description": "PlayerAction回调"
-        },
-        "callback": {
-          "oneOf": [
-            {
-              "type": "object",
-              "$ref": "../playeraction/playeraction.schema.json"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "../playeraction/playeraction.schema.json"
-              }
-            }
-          ]
+            "type": "string",
+            "description": "handler类型",
+            "enum": [
+                "dialogue",
+                "action",
+                "random"
+            ]
         }
-      },
-      "required": [
-        "type",
-        "callback"
-      ]
     },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "random",
-          "description": "随机进行处理"
+    "required": [
+        "type"
+    ],
+    "oneOf": [
+        {
+            "$ref": "dialogue.schema.json"
         },
-        "handler": {
-          "type": "array",
-          "description": "随机处理器配置",
-          "items": {
+        {
+            "type": "object",
+            "description": "PlayerAction回调",
+            "properties": {
+                "type": {
+                    "const": "action",
+                    "description": "PlayerAction回调"
+                },
+                "callback": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "$ref": "../playeraction/playeraction.schema.json"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "$ref": "../playeraction/playeraction.schema.json"
+                            }
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "type",
+                "callback"
+            ]
+        },
+        {
             "type": "object",
             "properties": {
-              "weight": {
-                "type": "number",
-                "description": "随机权重"
-              },
-              "handler": {
-                "$ref": "#"
-              }
+                "type": {
+                    "const": "random",
+                    "description": "随机进行处理"
+                },
+                "handler": {
+                    "type": "array",
+                    "description": "随机处理器配置",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "weight": {
+                                "type": "number",
+                                "description": "随机权重"
+                            },
+                            "handler": {
+                                "$ref": "#"
+                            }
+                        },
+                        "required": [
+                            "weight",
+                            "handler"
+                        ]
+                    }
+                }
             },
-            "required": ["weight", "handler"]
-          }
+            "required": [
+                "type",
+                "handler"
+            ],
+            "description": "随机进行处理"
         }
-      },
-      "required": ["type", "handler"],
-      "description": "随机进行处理"
-    }
-  ]
+    ]
 }

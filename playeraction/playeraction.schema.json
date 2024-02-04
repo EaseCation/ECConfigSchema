@@ -1,533 +1,551 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://easecation.github.io/ECConfigSchema/playeraction/playeraction.schema.json",
-  "type": "object",
-  "oneOf": [
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "custom",
-          "description": "自定义行为，在Java逻辑中注册和实现"
-        },
-        "id": {
-          "type": "string"
-        },
-        "args": {
-          "type": "object"
-        }
-      },
-      "required": [
-        "type",
-        "id"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "message"
-        },
-        "text": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "text"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "title",
-          "description": "显示 Title"
-        },
-        "title": {
-          "type": "string"
-        },
-        "sub": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "title"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form",
-          "description": "弹出原版FormUI"
-        },
-        "title": {
-          "type": "string"
-        },
-        "text": {
-          "type": "string"
-        },
-        "buttons": {
-          "type": "array",
-          "items": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://easecation.github.io/ECConfigSchema/playeraction/playeraction.schema.json",
+    "title": "Player action schema",
+    "type": "object",
+    "oneOf": [
+        {
             "type": "object",
             "properties": {
-              "text": {
-                "type": "string"
-              },
-              "image": {
-                "type": "string"
-              },
-              "actions": {
-                "type": "array",
-                "items": {
-                  "type": "object"
+                "type": {
+                    "const": "custom",
+                    "description": "自定义行为，在Java逻辑中注册和实现"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "args": {
+                    "type": "object"
                 }
-              }
             },
             "required": [
-              "text",
-              "actions"
+                "type",
+                "id"
             ]
-          }
-        }
-      },
-      "required": [
-        "type",
-        "title",
-        "text"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.lottery",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.addition-ticket",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.preview",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.preview.ornament",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.cdkey",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.player-service",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.mail",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "form.sign-in",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "merchandise.set",
-          "description": "设置商品"
         },
-        "merchandise": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
-          "errorMessage": {
-            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
-          }
-        }
-      },
-      "required": ["type", "merchandise"]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "merchandise.add",
-          "description": "添加商品"
-        },
-        "merchandise": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
-          "errorMessage": {
-            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
-          }
-        }
-      },
-      "required": ["type", "merchandise"]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "merchandise.use",
-          "description": "使用商品"
-        },
-        "merchandise": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
-          "errorMessage": {
-            "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
-          }
-        }
-      },
-      "required": ["type", "merchandise"]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "gift",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "record",
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "exchange",
-          "description": "执行exchange"
-        },
-        "id": {
-          "type": "string",
-          "description": "兑换的ID"
-        },
-        "args": {
-          "type": "object",
-          "description": "额外参数"
-        },
-        "gainModUI": {
-          "oneOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string",
-                  "description": "兑换界面的标题"
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "message"
+                },
+                "text": {
+                    "type": "string"
                 }
-              }
-            }
-          ]
-        }
-      },
-      "required": ["type"]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "enum": ["firework", "fireworks"],
-          "description": ""
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "sound",
-          "description": "发出音效"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "kick",
-          "description": "踢出玩家"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "mission",
-          "description": "任务"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "tree.add",
-          "description": "植树活动"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "tree.milestone",
-          "description": "植树活动"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "tree.main",
-          "description": "植树活动"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "enum": ["teleport", "tp"],
-          "description": "传送玩家"
+            },
+            "required": [
+                "type",
+                "text"
+            ]
         },
-        "pos": {
-          "type": "string",
-          "description": "目标坐标",
-          "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "title",
+                    "description": "显示 Title"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "sub": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "title"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form",
+                    "description": "弹出原版FormUI"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "buttons": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "actions": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "required": [
+                            "text",
+                            "actions"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "title",
+                "text"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.lottery",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.addition-ticket",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.preview",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.preview.ornament",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.cdkey",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.player-service",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.mail",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "form.sign-in",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "merchandise.set",
+                    "description": "设置商品"
+                },
+                "merchandise": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
+                    "errorMessage": {
+                        "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "merchandise"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "merchandise.add",
+                    "description": "添加商品"
+                },
+                "merchandise": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
+                    "errorMessage": {
+                        "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "merchandise"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "merchandise.use",
+                    "description": "使用商品"
+                },
+                "merchandise": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9-_]+\\.[a-zA-Z0-9-_.]+:\\d+$",
+                    "errorMessage": {
+                        "pattern": "商品ID的格式应为 'xxx.yyy:n'，其中 'xxx' 为 category，'yyy' 为 iditem（可包含 '.'），'n' 为数字"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "merchandise"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "gift",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "record",
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "exchange",
+                    "description": "执行exchange"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "兑换的ID"
+                },
+                "args": {
+                    "type": "object",
+                    "description": "额外参数"
+                },
+                "gainModUI": {
+                    "oneOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "兑换界面的标题"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "firework",
+                        "fireworks"
+                    ],
+                    "description": ""
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "sound",
+                    "description": "发出音效"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "kick",
+                    "description": "踢出玩家"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "mission",
+                    "description": "任务"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "tree.add",
+                    "description": "植树活动"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "tree.milestone",
+                    "description": "植树活动"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "tree.main",
+                    "description": "植树活动"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "teleport",
+                        "tp"
+                    ],
+                    "description": "传送玩家"
+                },
+                "pos": {
+                    "type": "string",
+                    "description": "目标坐标",
+                    "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
+                }
+            },
+            "required": [
+                "type",
+                "pos"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "workshop",
+                    "description": "打开个性工坊的UI"
+                },
+                "tabId": {
+                    "type": "string",
+                    "description": "打开的TabID"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "workshop.group",
+                    "description": "个性工坊的某分类页面"
+                },
+                "group": {
+                    "type": "string",
+                    "description": "分类ID"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "netease.shop",
+                    "description": "打开网易商城"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "商品分类"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "activity",
+                    "description": "打开活动系统UI的对应活动"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "活动ID"
+                },
+                "index": {
+                    "type": "integer",
+                    "description": "索引"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "navigate",
+                    "description": "可视化路径引导到某一坐标"
+                },
+                "stop": {
+                    "type": "boolean",
+                    "description": "是否停止玩家已有路径引导",
+                    "default": true
+                },
+                "target": {
+                    "type": "string",
+                    "description": "目标坐标",
+                    "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
+                },
+                "sfx": {
+                    "type": "string",
+                    "description": "贴图",
+                    "default": "sfx/frame/navi_red"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "modui.gain",
+                    "description": "显示ModUI的获取奖品的界面"
+                },
+                "content": {
+                    "type": "object",
+                    "description": "内容(Exchange)"
+                },
+                "closeCallback": {
+                    "type": "object",
+                    "description": "关闭后的回调",
+                    "$ref": "#"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "顶部显示标题",
+                    "default": "你获得了"
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ]
         }
-      },
-      "required": [
-        "type",
-        "pos"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "workshop",
-          "description": "打开个性工坊的UI"
-        },
-        "tabId": {
-          "type": "string",
-          "description": "打开的TabID"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "workshop.group",
-          "description": "个性工坊的某分类页面"
-        },
-        "group": {
-          "type": "string",
-          "description": "分类ID"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "netease.shop",
-          "description": "打开网易商城"
-        },
-        "category": {
-          "type": "string",
-          "description": "商品分类"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "activity",
-          "description": "打开活动系统UI的对应活动"
-        },
-        "id": {
-          "type": "string",
-          "description": "活动ID"
-        },
-        "index": {
-          "type": "integer",
-          "description": "索引"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "navigate",
-          "description": "可视化路径引导到某一坐标"
-        },
-        "stop": {
-          "type": "boolean",
-          "description": "是否停止玩家已有路径引导",
-          "default": true
-        },
-        "target": {
-          "type": "string",
-          "description": "目标坐标",
-          "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
-        },
-        "sfx": {
-          "type": "string",
-          "description": "贴图",
-          "default": "sfx/frame/navi_red"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "modui.gain",
-          "description": "显示ModUI的获取奖品的界面"
-        },
-        "content": {
-          "type": "object",
-          "description": "内容(Exchange)"
-        },
-        "closeCallback": {
-          "type": "object",
-          "description": "关闭后的回调",
-          "$ref": "#"
-        },
-        "title": {
-          "type": "string",
-          "description": "顶部显示标题",
-          "default": "你获得了"
-        }
-      },
-      "required": [
-        "type",
-        "content"
-      ]
-    }
-  ]
+    ]
 }

@@ -1,51 +1,54 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/container.schema.json",
-  "type": "object",
-  "properties": {
-    "reference": {
-      "type": "string"
-    },
-    "dialogue": {
-      "type": "object"
-    },
-    "hook": {
-      "type": "object"
-    },
-    "skin": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "skinId": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/container.schema.json",
+    "title": "ECNPCContainer schema",
+    "type": "object",
+    "properties": {
+        "reference": {
             "type": "string"
-          },
-          "skinData": {
-            "type": "string",
-            "format": "uri"
-          },
-          "skinPack": {
-            "type": "string",
-            "format": "uri"
-          },
-          "geometryName": {
-            "type": "string"
-          },
-          "geometryData": {
-            "type": "string",
-            "format": "uri"
-          }
         },
-        "required": ["skinId"],
-        "additionalProperties": false
-      }
+        "dialogue": {
+            "type": "object"
+        },
+        "hook": {
+            "type": "object"
+        },
+        "skin": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "skinId": {
+                        "type": "string"
+                    },
+                    "skinData": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "skinPack": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "geometryName": {
+                        "type": "string"
+                    },
+                    "geometryData": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                },
+                "required": [
+                    "skinId"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "npc": {
+            "type": "array",
+            "items": {
+                "$ref": "prefab.schema.json"
+            }
+        }
     },
-    "npc": {
-      "type": "array",
-      "items": {
-        "$ref": "prefab.schema.json"
-      }
-    }
-  },
-  "additionalProperties": true
+    "additionalProperties": true
 }

@@ -1,178 +1,182 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/prefab.schema.json",
-  "type": "object",
-  "properties": {
-    "npcTag": {
-      "type": "string"
-    },
-    "pos": {
-      "type": "string",
-      "description": "NPC坐标，格式：x:y:z:yaw:pitch（yaw和pitch可选）",
-      "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$",
-      "errorMessage": {
-        "pattern": "格式不正确，正确的格式是：x:y:z:yaw:pitch（yaw和pitch可选）"
-      }
-    },
-    "posOffset": {
-      "type": "string",
-      "description": "NPC坐标偏移，格式：x:y:z",
-      "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)$",
-      "errorMessage": {
-          "pattern": "格式不正确，正确的格式是：x:y:z"
-      }
-    },
-    "posOverride": {
-      "type": "string",
-      "description": "覆盖NPC的位置坐标，格式为X:Y:Z:Yaw:Pitch，使用 ~ 表示保留原始数值",
-      "pattern": "^(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?)(:(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?))?$",
-      "errorMessage": {
-          "pattern": "格式不正确，正确的格式是：x:y:z:yaw:pitch（yaw和pitch可选）"
-      }
-    },
-    "skin": {
-      "description": "指定NPC的皮肤（只有在type为human时生效）",
-      "anyOf": [
-        {
-          "type": "string",
-          "enum": [
-            "py",
-            "py-sb",
-            "py-christmas",
-            "py-zhj",
-            "py-sg",
-            "py-football",
-            "py-ny",
-            "hzmn",
-            "bedrock.alex",
-            "bedrock.ari",
-            "bedrock.efe",
-            "bedrock.kai",
-            "bedrock.makena",
-            "bedrock.noor",
-            "bedrock.steve",
-            "bedrock.sunny",
-            "bedrock.zuri",
-            "sbpy",
-            "christmas",
-            "snowdrift",
-            "boybook",
-            "boatnpc",
-            "callboard",
-            "punk",
-            "coppie",
-            "joseph",
-            "ai-robot",
-            "ec-girl"
-          ]
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/prefab.schema.json",
+    "title": "ECNPC prefab schema",
+    "type": "object",
+    "properties": {
+        "npcTag": {
+            "type": "string"
         },
-        {
-          "type": "string"
-        }
-      ]
-    },
-    "animation": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "human",
-        "creature",
-        "pet",
-        "text",
-        "billboard",
-        "npc",
-        "empty",
-        "gift_box",
-        "small_py",
-        "walder_doll"
-      ]
-    },
-    "id": {
-      "type": "string",
-      "description": "当type为creature时，定义自定义实体的类型（格式：namespace:entity_identifier）",
-      "pattern": "^[a-z0-9_]+:[a-z0-9_]+$",
-      "errorMessage": {
-          "pattern": "格式不正确，正确的格式是：namespace:entity_identifier"
-      }
-    },
-    "skinId": {
-      "type": "integer"
-    },
-    "scale": {
-      "type": "number"
-    },
-    "width": {
-      "type": "number",
-      "description": "定义NPC的碰撞箱宽度（影响玩家点击NPC的有效区域）"
-    },
-    "height": {
-      "type": "number",
-      "description": "定义NPC的碰撞箱高度（影响玩家点击NPC的有效区域）"
-    },
-    "name": {
-      "type": "string",
-      "description": "NPC名称（头顶名字）"
-    },
-    "nameTagVisible": {
-      "type": "boolean",
-      "description": "是否始终显示头顶名字"
-    },
-    "scoreTag": {
-      "type": "string"
-    },
-    "variant": {
-      "type": "integer"
-    },
-    "markVariant": {
-      "type": "integer"
-    },
-    "dancing": {
-      "type": "boolean"
-    },
-    "sitting": {
-      "type": "boolean"
-    },
-    "sneaking": {
-      "type": "boolean"
-    },
-    "light": {
-      "type": "integer"
-    },
-    "dialogue": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "dialogue.schema.json"
-      }
-    },
-    "canSeeRegion": {
-      "type": "string",
-      "description": "定义玩家所处什么区域时能看到NPC，格式为 X1:Y1:Z1:X2:Y2:Z2",
-      "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?):-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)$",
-      "errorMessage": {
-          "pattern": "格式不正确，正确的格式是：X1:Y1:Z1:X2:Y2:Z2"
-      }
-    },
-    "extraCanSee": {
-      "type": ["string", "array"],
-      "description": "定义NPC能被玩家看到的条件，内容为 @ECCondtion 表达式"
-    },
-    "viewDistance": {
-      "type": "number",
-      "description": "定义NPC可被玩家看到的距离（防止渲染给玩家过多的实体导致客户端性能问题）"
-    },
-    "ornaments": {
-      "type": "array",
-      "description": "定义NPC的装饰物（4D装扮）列表。（注：只支持human类型的NPC）",
-      "items": {
-        "type": "string"
-      }
-    },
-    "hook": {
-      "description": "定义NPC的行为钩子的列表",
-      "$ref": "hook.schema.json"
-    },
-    "additionalProperties": true
-  }
+        "pos": {
+            "type": "string",
+            "description": "NPC坐标，格式：x:y:z:yaw:pitch（yaw和pitch可选）",
+            "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$",
+            "errorMessage": {
+                "pattern": "格式不正确，正确的格式是：x:y:z:yaw:pitch（yaw和pitch可选）"
+            }
+        },
+        "posOffset": {
+            "type": "string",
+            "description": "NPC坐标偏移，格式：x:y:z",
+            "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)$",
+            "errorMessage": {
+                "pattern": "格式不正确，正确的格式是：x:y:z"
+            }
+        },
+        "posOverride": {
+            "type": "string",
+            "description": "覆盖NPC的位置坐标，格式为X:Y:Z:Yaw:Pitch，使用 ~ 表示保留原始数值",
+            "pattern": "^(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?)(:(~|-?\\d+(\\.\\d+)?):(~|-?\\d+(\\.\\d+)?))?$",
+            "errorMessage": {
+                "pattern": "格式不正确，正确的格式是：x:y:z:yaw:pitch（yaw和pitch可选）"
+            }
+        },
+        "skin": {
+            "description": "指定NPC的皮肤（只有在type为human时生效）",
+            "anyOf": [
+                {
+                    "type": "string",
+                    "enum": [
+                        "py",
+                        "py-sb",
+                        "py-christmas",
+                        "py-zhj",
+                        "py-sg",
+                        "py-football",
+                        "py-ny",
+                        "hzmn",
+                        "bedrock.alex",
+                        "bedrock.ari",
+                        "bedrock.efe",
+                        "bedrock.kai",
+                        "bedrock.makena",
+                        "bedrock.noor",
+                        "bedrock.steve",
+                        "bedrock.sunny",
+                        "bedrock.zuri",
+                        "sbpy",
+                        "christmas",
+                        "snowdrift",
+                        "boybook",
+                        "boatnpc",
+                        "callboard",
+                        "punk",
+                        "coppie",
+                        "joseph",
+                        "ai-robot",
+                        "ec-girl"
+                    ]
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "animation": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "human",
+                "creature",
+                "pet",
+                "text",
+                "billboard",
+                "npc",
+                "empty",
+                "gift_box",
+                "small_py",
+                "walder_doll"
+            ]
+        },
+        "id": {
+            "type": "string",
+            "description": "当type为creature时，定义自定义实体的类型（格式：namespace:entity_identifier）",
+            "pattern": "^[a-z0-9_]+:[a-z0-9_]+$",
+            "errorMessage": {
+                "pattern": "格式不正确，正确的格式是：namespace:entity_identifier"
+            }
+        },
+        "skinId": {
+            "type": "integer"
+        },
+        "scale": {
+            "type": "number"
+        },
+        "width": {
+            "type": "number",
+            "description": "定义NPC的碰撞箱宽度（影响玩家点击NPC的有效区域）"
+        },
+        "height": {
+            "type": "number",
+            "description": "定义NPC的碰撞箱高度（影响玩家点击NPC的有效区域）"
+        },
+        "name": {
+            "type": "string",
+            "description": "NPC名称（头顶名字）"
+        },
+        "nameTagVisible": {
+            "type": "boolean",
+            "description": "是否始终显示头顶名字"
+        },
+        "scoreTag": {
+            "type": "string"
+        },
+        "variant": {
+            "type": "integer"
+        },
+        "markVariant": {
+            "type": "integer"
+        },
+        "dancing": {
+            "type": "boolean"
+        },
+        "sitting": {
+            "type": "boolean"
+        },
+        "sneaking": {
+            "type": "boolean"
+        },
+        "light": {
+            "type": "integer"
+        },
+        "dialogue": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "dialogue.schema.json"
+            }
+        },
+        "canSeeRegion": {
+            "type": "string",
+            "description": "定义玩家所处什么区域时能看到NPC，格式为 X1:Y1:Z1:X2:Y2:Z2",
+            "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?):-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)$",
+            "errorMessage": {
+                "pattern": "格式不正确，正确的格式是：X1:Y1:Z1:X2:Y2:Z2"
+            }
+        },
+        "extraCanSee": {
+            "type": [
+                "string",
+                "array"
+            ],
+            "description": "定义NPC能被玩家看到的条件，内容为 @ECCondtion 表达式"
+        },
+        "viewDistance": {
+            "type": "number",
+            "description": "定义NPC可被玩家看到的距离（防止渲染给玩家过多的实体导致客户端性能问题）"
+        },
+        "ornaments": {
+            "type": "array",
+            "description": "定义NPC的装饰物（4D装扮）列表。（注：只支持human类型的NPC）",
+            "items": {
+                "type": "string"
+            }
+        },
+        "hook": {
+            "description": "定义NPC的行为钩子的列表",
+            "$ref": "hook.schema.json"
+        },
+        "additionalProperties": true
+    }
 }
