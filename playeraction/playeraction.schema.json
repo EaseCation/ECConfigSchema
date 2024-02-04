@@ -321,7 +321,7 @@
       "properties": {
         "type": {
           "const": "sound",
-          "description": ""
+          "description": "发出音效"
         }
       },
       "required": [
@@ -333,7 +333,7 @@
       "properties": {
         "type": {
           "const": "kick",
-          "description": ""
+          "description": "踢出玩家"
         }
       },
       "required": [
@@ -345,7 +345,7 @@
       "properties": {
         "type": {
           "const": "mission",
-          "description": ""
+          "description": "任务"
         }
       },
       "required": [
@@ -357,7 +357,7 @@
       "properties": {
         "type": {
           "const": "tree.add",
-          "description": ""
+          "description": "植树活动"
         }
       },
       "required": [
@@ -369,7 +369,7 @@
       "properties": {
         "type": {
           "const": "tree.milestone",
-          "description": ""
+          "description": "植树活动"
         }
       },
       "required": [
@@ -381,7 +381,7 @@
       "properties": {
         "type": {
           "const": "tree.main",
-          "description": ""
+          "description": "植树活动"
         }
       },
       "required": [
@@ -393,11 +393,17 @@
       "properties": {
         "type": {
           "enum": ["teleport", "tp"],
-          "description": ""
+          "description": "传送玩家"
+        },
+        "pos": {
+          "type": "string",
+          "description": "目标坐标",
+          "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
         }
       },
       "required": [
-        "type"
+        "type",
+        "pos"
       ]
     },
     {
@@ -405,7 +411,11 @@
       "properties": {
         "type": {
           "const": "workshop",
-          "description": ""
+          "description": "打开个性工坊的UI"
+        },
+        "tabId": {
+          "type": "string",
+          "description": "打开的TabID"
         }
       },
       "required": [
@@ -417,7 +427,11 @@
       "properties": {
         "type": {
           "const": "workshop.group",
-          "description": ""
+          "description": "个性工坊的某分类页面"
+        },
+        "group": {
+          "type": "string",
+          "description": "分类ID"
         }
       },
       "required": [
@@ -429,7 +443,11 @@
       "properties": {
         "type": {
           "const": "netease.shop",
-          "description": ""
+          "description": "打开网易商城"
+        },
+        "category": {
+          "type": "string",
+          "description": "商品分类"
         }
       },
       "required": [
@@ -441,7 +459,42 @@
       "properties": {
         "type": {
           "const": "activity",
-          "description": ""
+          "description": "打开活动系统UI的对应活动"
+        },
+        "id": {
+          "type": "string",
+          "description": "活动ID"
+        },
+        "index": {
+          "type": "integer",
+          "description": "索引"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "navigate",
+          "description": "可视化路径引导到某一坐标"
+        },
+        "stop": {
+          "type": "boolean",
+          "description": "是否停止玩家已有路径引导",
+          "default": true
+        },
+        "target": {
+          "type": "string",
+          "description": "目标坐标",
+          "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$",
+        },
+        "sfx": {
+          "type": "string",
+          "description": "贴图",
+          "default": "sfx/frame/navi_red"
         }
       },
       "required": [
@@ -453,11 +506,26 @@
       "properties": {
         "type": {
           "const": "modui.gain",
-          "description": ""
+          "description": "显示ModUI的获取奖品的界面"
+        },
+        "content": {
+          "type": "object",
+          "description": "内容(Exchange)"
+        },
+        "closeCallback": {
+          "type": "object",
+          "description": "关闭后的回调",
+          "$ref": "#"
+        },
+        "title": {
+          "type": "string",
+          "description": "顶部显示标题",
+          "default": "你获得了"
         }
       },
       "required": [
-        "type"
+        "type",
+        "content"
       ]
     }
   ]
