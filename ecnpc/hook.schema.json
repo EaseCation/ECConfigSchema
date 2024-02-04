@@ -327,12 +327,6 @@
                 "additionalProperties": false
             },
             {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "const": "dialogue"
-                    }
-                },
                 "$ref": "dialogue.schema.json"
             },
             {
