@@ -329,9 +329,9 @@
             {
                 "type": "object",
                 "properties": {
-                  "type": {
-                    "const": "dialogue"
-                  }
+                    "type": {
+                        "const": "dialogue"
+                    }
                 },
                 "$ref": "dialogue.schema.json"
             },
