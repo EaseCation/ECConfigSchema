@@ -502,7 +502,11 @@
                         "description": "显示后，再次隐藏距离，默认10",
                         "default": 10
                     }
-                }
+                },
+                "required": [
+                    "type"
+                ],
+                "additionalProperties": false
             }
         ]
     }
