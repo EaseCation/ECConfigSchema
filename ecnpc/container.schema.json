@@ -3,53 +3,81 @@
     "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/container.schema.json",
     "title": "ECNPCContainer schema",
     "description": "ECNPC对象容器，用于定义一组ECNPC相关的Dialogue、Hook、Skin以及一组相关的NPC预制实体，对象容器内的NPC预制实体可以根据npcTag进行过滤，统一被生成、管理",
-    "type": "object",
-    "properties": {
-        "reference": {
-            "type": "string"
-        },
-        "dialogue": {
-            "type": "object"
-        },
-        "hook": {
-            "type": "object"
-        },
-        "skin": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "skinId": {
-                        "type": "string"
-                    },
-                    "skinData": {
-                        "type": "string",
-                        "format": "uri"
-                    },
-                    "skinPack": {
-                        "type": "string",
-                        "format": "uri"
-                    },
-                    "geometryName": {
-                        "type": "string"
-                    },
-                    "geometryData": {
-                        "type": "string",
-                        "format": "uri"
+    "definitions": {
+        "container": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "description": "用于注册此NPC对象容器，并在之后通过reference引用",
+                    "type": "string"
+                },
+                "dialogue": {
+                    "description": "与NPC相关的交互对话的映射，用于定义对多个NPC同时使用的交互对话",
+                    "type": "object"
+                },
+                "hook": {
+                    "description": "与NPC相关的行为钩子的映射，用于定义对多个NPC同时使用的行为钩子",
+                    "type": "object"
+                },
+                "skin": {
+                    "description": "与NPC相关的皮肤的列表，用于定义对多个NPC同时使用的皮肤",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "skinId": {
+                                "type": "string"
+                            },
+                            "skinData": {
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "skinPack": {
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "geometryName": {
+                                "type": "string"
+                            },
+                            "geometryData": {
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        },
+                        "required": [
+                            "skinId"
+                        ],
+                        "additionalProperties": false
                     }
                 },
-                "required": [
-                    "skinId"
-                ],
-                "additionalProperties": false
-            }
-        },
-        "npc": {
-            "type": "array",
-            "items": {
-                "$ref": "prefab.schema.json"
-            }
+                "npc": {
+                    "description": "包含NPC预制实体的列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "prefab.schema.json"
+                    }
+                }
+            },
+            "required": [
+                "npc"
+            ]
         }
     },
-    "additionalProperties": true
+    "oneOf": [
+        {
+            "$ref": "#/definitions/container"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "reference": {
+                    "description": "用于引用已经注册过的NPC对象容器",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "reference"
+            ]
+        }
+    ]
 }
