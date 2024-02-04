@@ -489,6 +489,20 @@
                     "points"
                 ],
                 "additionalProperties": false
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "hide-nametag",
+                        "description": "对于中国版，默认隐藏NPC的名字标签，在玩家准心放在NPC上时显示"
+                    },
+                    "distance": {
+                        "type": "number",
+                        "description": "显示后，再次隐藏距离，默认10",
+                        "default": 10
+                    }
+                }
             }
         ]
     }

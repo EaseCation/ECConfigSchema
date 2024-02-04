@@ -160,7 +160,7 @@
             "properties": {
                 "type": {
                     "const": "form.cdkey",
-                    "description": ""
+                    "description": "打开CDKey界面"
                 }
             },
             "required": [
@@ -172,7 +172,7 @@
             "properties": {
                 "type": {
                     "const": "form.player-service",
-                    "description": ""
+                    "description": "打开玩家服务UI"
                 }
             },
             "required": [
@@ -184,7 +184,7 @@
             "properties": {
                 "type": {
                     "const": "form.mail",
-                    "description": ""
+                    "description": "打开邮箱系统UI"
                 }
             },
             "required": [
@@ -196,7 +196,19 @@
             "properties": {
                 "type": {
                     "const": "form.sign-in",
-                    "description": ""
+                    "description": "打开签到UI"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "ui.vip",
+                    "description": "打开VIP界面"
                 }
             },
             "required": [
