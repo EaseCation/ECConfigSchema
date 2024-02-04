@@ -82,17 +82,22 @@
                             "image": {
                                 "type": "string"
                             },
-                            "actions": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object"
-                                }
+                            "click": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "$ref": "#"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "$ref": "#"
+                                        }
+                                    }
+                                ]
                             }
-                        },
-                        "required": [
-                            "text",
-                            "actions"
-                        ]
+                        }
                     }
                 }
             },
@@ -546,6 +551,23 @@
             "required": [
                 "type",
                 "content"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "npc.touch",
+                    "description": "模拟玩家点击NPC"
+                },
+                "npcTag": {
+                    "type": "string",
+                    "description": "NPC的Tag"
+                }
+            },
+            "required": [
+                "type",
+                "npcTag"
             ]
         }
     ]

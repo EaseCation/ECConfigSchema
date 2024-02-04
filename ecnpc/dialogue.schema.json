@@ -1,87 +1,98 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/dialogue.schema.json",
-    "title": "ECNPC dialogue schema",
-    "description": "ECNPC交互对话，用于实现游戏内打开对话框后NPC实体与玩家进行交互",
-    "type": "object",
-    "properties": {
-        "type": {
-            "const": "dialogue",
-            "description": "钩子类型，此处应为 'dialogue'"
-        },
-        "key": {
-            "type": "string",
-            "description": "可以直接复用在外层注册的dialogue"
-        },
-        "condition": {
-            "type": "string",
-            "description": "触发对话的条件判断"
-        },
-        "dialogue": {
-            "type": "string",
-            "description": "对话内容"
-        },
-        "button": {
-            "type": "array",
-            "description": "按钮配置",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "buttonName": {
-                        "type": "string",
-                        "description": "按钮名称"
-                    },
-                    "condition": {
-                        "type": "string",
-                        "description": "按钮显示的条件"
-                    },
-                    "forceCloseOnClick": {
-                        "type": "boolean",
-                        "description": "点击按钮后是否关闭对话弹窗"
-                    },
-                    "handler": {
-                        "oneOf": [
-                            {
-                                "type": "object",
-                                "$ref": "dialogue.handler.schema.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "$ref": "dialogue.handler.schema.json"
-                                }
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "buttonName"
-                ],
-                "description": "按钮配置项"
-            }
-        },
-        "animation": {
-            "type": "string",
-            "description": "开始对话时，NPC播放的动画"
-        },
-        "sound": {
-            "type": "string",
-            "description": "开始对话时，播放的音效"
-        },
-        "portraitScale": {
-            "type": "number",
-            "description": "对话弹窗左侧的NPC模型的放大倍率"
-        },
-        "profileOffset": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3,
-            "description": "对话弹窗左侧的NPC模型的位置平移"
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://easecation.github.io/ECConfigSchema/ecnpc/dialogue.schema.json",
+  "title": "ECNPC dialogue schema",
+  "description": "ECNPC交互对话，用于实现游戏内打开对话框后NPC实体与玩家进行交互",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "dialogue",
+      "description": "钩子类型，此处应为 'dialogue'"
     },
-    "additionalProperties": false
+    "key": {
+      "type": "string",
+      "description": "可以直接复用在外层注册的dialogue"
+    },
+    "condition": {
+      "type": "string",
+      "description": "触发对话的条件判断"
+    },
+    "dialogue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "对话内容"
+        },
+        {
+          "type": "array",
+          "description": "随机对话内容",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "button": {
+      "type": "array",
+      "description": "按钮配置",
+      "items": {
+        "type": "object",
+        "properties": {
+          "buttonName": {
+            "type": "string",
+            "description": "按钮名称"
+          },
+          "condition": {
+            "type": "string",
+            "description": "按钮显示的条件"
+          },
+          "forceCloseOnClick": {
+            "type": "boolean",
+            "description": "点击按钮后是否关闭对话弹窗"
+          },
+          "handler": {
+            "oneOf": [
+              {
+                "type": "object",
+                "$ref": "dialogue.handler.schema.json"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "$ref": "dialogue.handler.schema.json"
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "buttonName"
+        ],
+        "description": "按钮配置项"
+      }
+    },
+    "animation": {
+      "type": "string",
+      "description": "开始对话时，NPC播放的动画"
+    },
+    "sound": {
+      "type": "string",
+      "description": "开始对话时，播放的音效"
+    },
+    "portraitScale": {
+      "type": "number",
+      "description": "对话弹窗左侧的NPC模型的放大倍率"
+    },
+    "portraitOffset": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "对话弹窗左侧的NPC模型的位置平移"
+    }
+  },
+  "additionalProperties": false
 }
