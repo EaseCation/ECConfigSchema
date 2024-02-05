@@ -366,6 +366,18 @@
             "type": "object",
             "properties": {
                 "type": {
+                    "const": "effect",
+                    "description": "给玩家上effect"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
                     "const": "kick",
                     "description": "踢出玩家"
                 }
