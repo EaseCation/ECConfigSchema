@@ -33,6 +33,22 @@
                 "pattern": "格式不正确，正确的格式是：x:y:z:yaw:pitch（yaw和pitch可选）"
             }
         },
+        "type": {
+            "type": "string",
+            "enum": [
+                "human",
+                "creature",
+                "pet",
+                "text",
+                "billboard",
+                "npc",
+                "empty",
+                "gift_box",
+                "small_py",
+                "walder_doll",
+                "scoretop"
+            ]
+        },
         "skin": {
             "description": "指定NPC的皮肤（只有在type为human时生效）",
             "anyOf": [
@@ -76,21 +92,6 @@
         },
         "animation": {
             "type": "string"
-        },
-        "type": {
-            "type": "string",
-            "enum": [
-                "human",
-                "creature",
-                "pet",
-                "text",
-                "billboard",
-                "npc",
-                "empty",
-                "gift_box",
-                "small_py",
-                "walder_doll"
-            ]
         },
         "id": {
             "type": "string",
@@ -138,13 +139,18 @@
             "type": "boolean"
         },
         "sneaking": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "是否处于潜行状态"
         },
         "light": {
-            "type": "integer"
+            "type": "integer",
+            "description": "定义NPC的光照等级（通过在NPC坐标放置光源方块实现）",
+            "min": 0,
+            "max": 15
         },
         "dialogue": {
             "type": "object",
+            "description": "预先定义NPC的对话内容（还需要在hook中使用才会生效）",
             "additionalProperties": {
                 "$ref": "dialogue.schema.json"
             }
@@ -178,7 +184,66 @@
         "hook": {
             "description": "定义NPC的行为钩子的列表",
             "$ref": "hook.schema.json"
+        }
+    },
+    "additionalProperties": true,
+    "if": {
+        "properties": {
+            "type": {
+                "const": "scoretop"
+            }
+        }
+    },
+    "then": {
+        "properties": {
+            "game": {
+                "type": "string"
+            },
+            "gameName": {
+                "type": "string"
+            },
+            "scoreType": {
+                "type": "string",
+                "anyOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "type": "string",
+                        "enum": [
+                            "KILL",
+                            "WIN"
+                        ]
+                    }
+                ]
+            },
+            "scoreTypeName": {
+                "type": "string"
+            },
+            "deadlineTypes": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "enum": ["DAY", "WEEK", "MONTH", "YEAR", "FOREVER"]
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": ["DAY", "WEEK", "MONTH", "YEAR", "FOREVER"]
+                        }
+                    }
+                ]
+            },
+            "playerNPC": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "description": "玩家NPC的坐标",
+                    "pattern": "^-?\\d+(\\.\\d+)?:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?)(:(-?\\d+(\\.\\d+)?):(-?\\d+(\\.\\d+)?))?$"
+                }
+            }
         },
-        "additionalProperties": true
+        "required": ["game", "gameName", "scoreType", "deadlineTypes"]
     }
 }
