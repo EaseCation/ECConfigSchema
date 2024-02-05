@@ -32,6 +32,24 @@
         }
       ]
     },
+    "param": {
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "对话参数表达式map",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "array",
+          "description": "对话参数表达式list",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
     "button": {
       "type": "array",
       "description": "按钮配置",
