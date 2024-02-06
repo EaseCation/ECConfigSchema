@@ -207,6 +207,18 @@
             "type": "object",
             "properties": {
                 "type": {
+                    "const": "form.homeland",
+                    "description": "打开家园系统UI"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
                     "const": "ui.vip",
                     "description": "打开VIP界面"
                 }
@@ -592,6 +604,23 @@
             "required": [
                 "type",
                 "npcTag"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "passcard",
+                    "description": "打开通行证UI"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "通行证ID，例如 s5"
+                }
+            },
+            "required": [
+                "type",
+                "id"
             ]
         }
     ]

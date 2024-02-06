@@ -5,7 +5,7 @@
     "description": "ECNPC行为钩子，用于定义NPC的特定行为和与玩家的交互",
     "type": "array",
     "items": {
-        "oneOf": [
+        "anyOf": [
             {
                 "type": "string",
                 "enum": [
@@ -14,6 +14,9 @@
                     "baby",
                     "scoretag-online"
                 ]
+            },
+            {
+                "type": "string"
             },
             {
                 "type": "object",
@@ -412,6 +415,10 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "homeland": {
+                        "type": "boolean",
+                        "description": "统计家园系统的在线人数"
                     }
                 },
                 "required": [
@@ -496,6 +503,10 @@
                     "type": {
                         "const": "hide-nametag",
                         "description": "对于中国版，默认隐藏NPC的名字标签，在玩家准心放在NPC上时显示"
+                    },
+                    "autoShow": {
+                        "type": "number",
+                        "description": "自动显示名字的距离，默认0表示不自动显示"
                     },
                     "distance": {
                         "type": "number",
