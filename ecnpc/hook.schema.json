@@ -69,6 +69,36 @@
                 "type": "object",
                 "properties": {
                     "type": {
+                        "const": "collide",
+                        "description": "当玩家靠近NPC时触发的行为。\n它可以配置一系列的回调操作（PlayerAction）"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "description": "触发条件判断"
+                    },
+                    "callback": {
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../playeraction/playeraction.schema.json"
+                                }
+                            },
+                            {
+                                "$ref": "../playeraction/playeraction.schema.json"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "type"
+                ],
+                "additionalProperties": false
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "type": {
                         "const": {
                             "anyOf": [
                                 "touch.exchange",
