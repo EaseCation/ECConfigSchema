@@ -91,7 +91,17 @@
             ]
         },
         "animation": {
-            "type": "string"
+            "description": "指定NPC的动画（只有human类型有效；只有循环播放类的才会生效）",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "覆盖玩家的base_pose"
+                },
+                {
+                    "type": "object",
+                    "description": "手动指定需要覆盖的玩家动画，详见原生材质包中的player.entity.json"
+                }
+            ]
         },
         "id": {
             "type": "string",

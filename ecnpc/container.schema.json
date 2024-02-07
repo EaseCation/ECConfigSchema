@@ -57,10 +57,7 @@
                         "$ref": "prefab.schema.json"
                     }
                 }
-            },
-            "required": [
-                "npc"
-            ]
+            }
         }
     },
     "if": {
