@@ -524,7 +524,18 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "活动ID"
+                    "description": "活动ID",
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
                 },
                 "index": {
                     "type": "integer",
